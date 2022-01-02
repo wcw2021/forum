@@ -18,6 +18,7 @@ if(isset($_POST['do_reply'])){
 	$data['topic_id'] = $topic_id;
 	$data['body'] = $_POST['body'];
 	$data['user_id'] = getUserInfo()['user_id'];
+    $data['last_activity'] = date("Y-m-d H:i:s");
 
 	//Create Validator Object
 	$validate = new Validator;
@@ -37,6 +38,15 @@ if(isset($_POST['do_reply'])){
 	}
 }
 
+if(isset($_POST['del_id'])){
+	$del_id = $_POST['del_id'];
+	if($topic->delete($del_id)){
+		redirectWithMessage('index.php', 'Topic Deleted', 'success');
+	} else {
+		redirectWithMessage('index.php', 'Topic Not Deleted', 'error');
+	}
+}
+
 //Get Template
 $template = new Template('templates/topic.php');
 
@@ -46,6 +56,7 @@ $template->replies = $topic->getReplies($topic_id);
 
 if( $topic->getTopic($topic_id) ){
 	$template->title = $topic->getTopic($topic_id)->title;
+	$template->subtitle = "<small>Original Post: " . $topic->getTopic($topic_id)->create_date . "</small>";
 }
 
 //Display template

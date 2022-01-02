@@ -129,7 +129,7 @@ class Topic{
 	 * Get Topic Replies By topic ID
 	 */
 	public function getReplies($topic_id){
-		$this->db->query("SELECT replies.body, replies.topic_id, replies.user_id,users.* FROM replies
+		$this->db->query("SELECT replies.body, replies.last_activity as reply_date, replies.topic_id, replies.user_id,users.* FROM replies
 						INNER JOIN users
 						ON replies.user_id = users.id
 						WHERE replies.topic_id = :topic_id 
@@ -169,12 +169,14 @@ class Topic{
 	 */
 	public function reply($data){
 		//Insert Query
-		$this->db->query("INSERT INTO replies (topic_id, user_id, body)
-											VALUES (:topic_id, :user_id, :body)");
+		$this->db->query("INSERT INTO replies (topic_id, user_id, body, last_activity)
+											VALUES (:topic_id, :user_id, :body, :last_activity)");
 		//Bind Values
 		$this->db->bind(':topic_id', $data['topic_id']);
 		$this->db->bind(':user_id', $data['user_id']);
 		$this->db->bind(':body', $data['body']);
+        $this->db->bind(':last_activity', $data['last_activity']);
+
 		//Execute
 		if($this->db->execute()){
 			return true;
@@ -182,9 +184,53 @@ class Topic{
 			return false;
 		}
 	}
+
+	/*
+	 * Delete Topic
+	 */
+    public function delete($id){
+        //Insert Query
+        $this->db->query("DELETE FROM topics WHERE id = :id");
+        //Bind Values
+        $this->db->bind(':id', $id);
+
+        //Execute
+        if($this->db->execute()){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+	/*
+	 * Update Topic
+	 */
+    public function update($data){
+        //Insert Query
+        $this->db->query("UPDATE topics
+            SET
+            category_id = :category_id,
+            title = :title,
+            body = :body,
+            last_activity = :last_activity
+            WHERE id = :id");
+        // Bind Data
+		$this->db->bind(':category_id', $data['category_id']);
+		$this->db->bind(':title', $data['title']);
+		$this->db->bind(':body', $data['body']);
+		$this->db->bind(':last_activity', $data['last_activity']);
+		$this->db->bind(':id', $data['topic_id']);
+        //Execute
+        if($this->db->execute()){
+            return true;
+        } else {
+            return false;
+        }
+    }
 	
 	
 }
+
 
 
 

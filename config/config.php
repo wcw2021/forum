@@ -7,6 +7,7 @@ define("DB_NAME", "talkingspace");
 
 // Site Title
 define("SITE_TITLE", "Welcome To FORUM!");
+define("SITE_SUB_TITLE", "A simple PHP forum engine");
 
 // URL Root
 define('URLROOT', 'http://localhost/forum');

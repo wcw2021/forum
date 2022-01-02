@@ -5,10 +5,9 @@
 
             <div class="col-md-4">
                 <div class="sidebar">
-					<div class="card card-body border-0 mb-3">
-						
+					<div class="card card-body border-0 mb-3">						
                         <?php if(isLoggedIn()) : ?>
-                            <h3>Welcome, <?php echo getUserInfo()['username']; ?></h3>
+                            <h3>Welcome! <?php echo (!empty(getUserInfo())) ? getUserInfo()['username'] : ''; ?></h3>
                             <form class="mt-2" method="post" action="logout.php">
                                 <input name="do_logout" type="submit" class="btn btn-info" value="Logout" />
                             </form>
@@ -29,9 +28,15 @@
                         <?php endif; ?>
 					</div>
 
-                    <div class="card card-body border-0">
+                    <div class="card p-3 my-3 border-0 advertise">
+                        <div class="text-center">
+                            <h1 id="advertise-text">Annoying AD</h1>
+                        </div>
+                    </div>
+
+                    <div class="card card-body border-0 mb-4">
                         <h3>Categories</h3>
-                        <div class="list-group mt-2">
+                        <div class="list-group my-2">
                             <a href="topics.php" class="list-group-item <?php echo is_active(null); ?>">All Topics <span class="badge badge-pill badge-secondary float-right"><?php echo topicCount(); ?></span></a> 
                             <?php foreach(getCategories() as $category) : ?>
                                 <a href="topics.php?category=<?php echo urlFormat($category->id); ?>" class="list-group-item <?php echo is_active($category->id); ?>">
@@ -59,7 +64,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
-    <script src="js/main.js"></script>
+    <script src="templates/js/advertise.js"></script>
     <script src="//cdn.ckeditor.com/4.17.1/basic/ckeditor.js"></script>
     <script>
             CKEDITOR.replace( 'body' );
