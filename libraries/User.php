@@ -95,7 +95,7 @@ class User{
 	 */
 	public function login($username, $password){
 
-        $this->db->query('SELECT * FROM users WHERE name = :user');
+        $this->db->query('SELECT * FROM users WHERE username = :user');
         $this->db->bind(':user', $username);
 
         $row = $this->db->single();
