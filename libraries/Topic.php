@@ -66,6 +66,29 @@ class Topic{
 	
 		return $results;
 	}
+
+    /*
+	 * Get Topics By Search filter
+	 */
+	public function getBySearch($search){
+
+        $pattern = '%' . $search . '%';
+
+		$this->db->query("SELECT topics.*, categories.name, users.username, users.avatar FROM topics
+                        INNER JOIN categories
+                        ON topics.category_id = categories.id
+                        INNER JOIN users
+                        ON topics.user_id=users.id
+                        WHERE topics.title LIKE :pattern OR topics.body LIKE :pattern
+                        ORDER BY create_date DESC 
+                        ");
+                        $this->db->bind(':pattern', $pattern);
+		
+		//Assign Result Set
+		$results = $this->db->resultset();
+
+		return $results;
+	}
 	  
 	/*
 	 * Get Total # of Topics

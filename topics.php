@@ -13,6 +13,10 @@ $category_id = (isset($_GET['category'])) ? (int) $_GET['category'] : null;
 //Get user From URL
 $user_id = (isset($_GET['user'])) ? (int) $_GET['user'] : null;
 
+//Get search filter From URL
+$search = (isset($_GET['search'])) ? $_GET['search'] : '';
+$search = htmlspecialchars($search);
+
 //Get Template
 $template = new Template('templates/topics.php');
 
@@ -32,8 +36,14 @@ if(isset($user_id)){
     }
 }
 
-//Check For Category & User not set Filter
-if(!isset($category_id) && !isset($user_id)){
+//Check For Search Filter
+if(!empty($search)){
+	$template->topics = $topic->getBySearch($search);
+    $template->title = "Search for: $search";
+}
+
+//Check For Category & User & Search not set Filter
+if(!isset($category_id) && !isset($user_id) && empty($search)){
 	$template->topics = $topic->getAllTopics();
 }
 

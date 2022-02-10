@@ -1,8 +1,8 @@
 <?php
 //DB Params
 define("DB_HOST", "localhost");
-define("DB_USER", "noname");
-define("DB_PASS", "nopass");
+define("DB_USER", "cwei");
+define("DB_PASS", "sky365");
 define("DB_NAME", "talkingspace");
 
 // Site Title

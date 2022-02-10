@@ -33,12 +33,23 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="index.php">FORUM</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <a class="navbar-brand mr-5" href="index.php">FORUM</a>
+            <button class="navbar-toggler mb-2" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
         
-            <div class="collapse navbar-collapse" id="navbarColor01">            
+            <div class="collapse navbar-collapse" id="navbarColor01"> 
+                <ul class="navbar-nav mr-auto"> 
+                    <form class="form-inline" method="get" action="topics.php">
+                        <div class="input-group">
+                            <input class="form-control" type="text" name="search" placeholder="Search Topic">
+                            <div class="input-group-append">
+                                <button class="btn btn-info" type="submit"><i class="fas fa-search"></i></button>
+                            </div>
+                        </div>
+                    </form> 
+                </ul>
+
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                         <a class="nav-link <?= ($activepage == 'index') ? 'active' : ''; ?>" href="index.php">Home</a>
