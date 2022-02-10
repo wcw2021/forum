@@ -26,6 +26,25 @@ class Topic{
 		
 		return $results;
 	}
+
+    /*
+	 * Get All Topics with Pagination
+	 */
+	public function getAllTopicsWithPagination($page_offset_topics=0, $topics_per_page=3){
+		$this->db->query("SELECT topics.*, categories.name, users.username, users.avatar FROM topics
+						INNER JOIN categories
+						ON topics.category_id = categories.id
+						INNER JOIN users
+						ON topics.user_id=users.id
+                        ORDER BY create_date DESC
+                        LIMIT $page_offset_topics, $topics_per_page		
+		");
+	
+		//Assign Result Set
+		$results = $this->db->resultset();
+		
+		return $results;
+	}
 	  
 	/*
 	 * Get Topics By Category
@@ -38,6 +57,27 @@ class Topic{
 						ON topics.user_id=users.id
 						WHERE topics.category_id = :category_id	
                         ORDER BY create_date DESC		
+		");
+		$this->db->bind(':category_id', $category_id);
+	
+		//Assign Result Set
+		$results = $this->db->resultset();
+		
+		return $results;
+	}
+
+    /*
+	 * Get Topics By Category With Pagination
+	 */
+	public function getByCategoryWithPagination($category_id, $page_offset_topics=0, $topics_per_page=3){
+		$this->db->query("SELECT topics.*, categories.name, users.username, users.avatar FROM topics
+						INNER JOIN categories
+						ON topics.category_id = categories.id
+						INNER JOIN users
+						ON topics.user_id=users.id
+						WHERE topics.category_id = :category_id	
+                        ORDER BY create_date DESC
+                        LIMIT $page_offset_topics, $topics_per_page			
 		");
 		$this->db->bind(':category_id', $category_id);
 	
@@ -68,6 +108,27 @@ class Topic{
 	}
 
     /*
+	 * Get Topics By Username With Pagination
+	 */
+	public function getByUserWithPagination($user_id, $page_offset_topics=0, $topics_per_page=3){
+		$this->db->query("SELECT topics.*, categories.name, users.username, users.avatar FROM topics
+						INNER JOIN categories
+						ON topics.category_id = categories.id
+						INNER JOIN users
+						ON topics.user_id=users.id
+						WHERE topics.user_id = :user_id
+                        ORDER BY create_date DESC
+                        LIMIT $page_offset_topics, $topics_per_page	
+		");
+		$this->db->bind(':user_id', $user_id);
+	
+		//Assign Result Set
+		$results = $this->db->resultset();
+	
+		return $results;
+	}
+
+    /*
 	 * Get Topics By Search filter
 	 */
 	public function getBySearch($search){
@@ -81,8 +142,32 @@ class Topic{
                         ON topics.user_id=users.id
                         WHERE topics.title LIKE :pattern OR topics.body LIKE :pattern
                         ORDER BY create_date DESC 
-                        ");
-                        $this->db->bind(':pattern', $pattern);
+        ");
+        $this->db->bind(':pattern', $pattern);
+		
+		//Assign Result Set
+		$results = $this->db->resultset();
+
+		return $results;
+	}
+
+    /*
+	 * Get Topics By Search filter With Pagination
+	 */
+	public function getBySearchWithPagination($search, $page_offset_topics=0, $topics_per_page=3){
+
+        $pattern = '%' . $search . '%';
+
+		$this->db->query("SELECT topics.*, categories.name, users.username, users.avatar FROM topics
+                        INNER JOIN categories
+                        ON topics.category_id = categories.id
+                        INNER JOIN users
+                        ON topics.user_id=users.id
+                        WHERE topics.title LIKE :pattern OR topics.body LIKE :pattern
+                        ORDER BY create_date DESC 
+                        LIMIT $page_offset_topics, $topics_per_page	
+		");
+		$this->db->bind(':pattern', $pattern);
 		
 		//Assign Result Set
 		$results = $this->db->resultset();
@@ -98,7 +183,55 @@ class Topic{
 		$rows = $this->db->resultset();
 		return $this->db->rowCount();
 	}
+
+    /*
+	 * Get Total # of Topics By Category filter
+	 */
+	public function getTotalTopicsByCategory($category_id){
+		$this->db->query("SELECT * FROM topics
+						WHERE topics.category_id = :category_id			
+		");
+		$this->db->bind(':category_id', $category_id);
 	
+		//Assign Result Set
+		$rows = $this->db->resultset();
+
+		return $this->db->rowCount();
+	}
+
+    /*
+	 * Get Total # of Topics By Username filter
+	 */
+	public function getTotalTopicsByUser($user_id){
+		$this->db->query("SELECT * FROM topics
+						WHERE topics.user_id = :user_id
+		");
+		$this->db->bind(':user_id', $user_id);
+	
+		//Assign Result Set
+		$rows = $this->db->resultset();
+
+		return $this->db->rowCount();
+	}
+	
+    /*
+	 * Get Total # of Topics By Search filter
+	 */
+	public function getTotalTopicsBySearch($search){
+
+        $pattern = '%' . $search . '%';
+
+		$this->db->query("SELECT * FROM topics
+                        WHERE topics.title LIKE :pattern OR topics.body LIKE :pattern
+		");
+		$this->db->bind(':pattern', $pattern);
+		
+		//Assign Result Set
+		$rows = $this->db->resultset();
+
+		return $this->db->rowCount();
+	}
+
 	/*
 	 * Get Total # of Categories
 	 */

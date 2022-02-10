@@ -71,5 +71,15 @@ a.list-group-item.active, a.list-group-item.active:hover, a.list-group-item.acti
 }
 
 
+.pagination .page-link{
+    color: #17a2b8 !important;
+}
+
+.pagination .page-item.active .page-link{
+    border-color: #17a2b8 !important;
+    background-color: #17a2b8 !important;
+    color: #fff !important;
+}
+
 
 
