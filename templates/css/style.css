@@ -10,9 +10,9 @@ a{
 	color:#5c5b69;
 }
 
-img.avatar{
+/* img.avatar{
 	height:100%;
-}
+} */
 
 /* navbar */
 
@@ -81,5 +81,16 @@ a.list-group-item.active, a.list-group-item.active:hover, a.list-group-item.acti
     color: #fff !important;
 }
 
+@media (max-width: 1000px){
+    #login-form .btn{
+        margin-top: 10px !important;
+    }
 
+    .topic-info{
+        font-size: 14px;
+    }
+    .navbar-nav li.home{
+        margin-top: 10px;
+    }
+}
 

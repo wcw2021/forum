@@ -51,7 +51,7 @@
                 </ul>
 
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
+                    <li class="nav-item home">
                         <a class="nav-link <?= ($activepage == 'index') ? 'active' : ''; ?>" href="index.php">Home</a>
                     </li>
                     <?php if(!isLoggedIn()) : ?>

@@ -5,7 +5,7 @@
 
             <div class="col-md-4">
                 <div class="sidebar">
-					<div class="card card-body border-0 mb-3">						
+					<div class="card card-body border-0 mb-3" id="login-form">						
                         <?php if(isLoggedIn()) : ?>
                             <h3>Welcome! <?php echo (!empty(getUserInfo()['username'] )) ? getUserInfo()['username'] : ''; ?></h3>
                             <form class="mt-2" method="post" action="logout.php">
@@ -23,7 +23,7 @@
                                     <input name="password" type="password" class="form-control" placeholder="Enter Password">
                                 </div>
                                 <button name="do_login" type="submit" class="btn btn-info" value="Login">Login</button>
-                                <a class="btn btn-secondary" href="register.php"> Create Account</a>
+                                <a class="btn btn-secondary" id="register" href="register.php"> Create Account</a>
                             </form>
                         <?php endif; ?>
 					</div>
