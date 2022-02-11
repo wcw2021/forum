@@ -7,7 +7,7 @@
                 <div class="sidebar">
 					<div class="card card-body border-0 mb-3">						
                         <?php if(isLoggedIn()) : ?>
-                            <h3>Welcome! <?php echo (!empty(getUserInfo())) ? getUserInfo()['username'] : ''; ?></h3>
+                            <h3>Welcome! <?php echo (!empty(getUserInfo()['username'] )) ? getUserInfo()['username'] : ''; ?></h3>
                             <form class="mt-2" method="post" action="logout.php">
                                 <input name="do_logout" type="submit" class="btn btn-info" value="Logout" />
                             </form>

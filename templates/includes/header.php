@@ -64,7 +64,7 @@
                         </li>
                         <li class="nav-item dropdown ml-2">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-user"></i> <?php echo (!empty(getUserInfo())) ? getUserInfo()['username'] : ''; ?>
+                            <i class="fas fa-user"></i> <?php echo (!empty(getUserInfo()['username'])) ? getUserInfo()['username'] : ''; ?>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="profile.php">Profile</a>

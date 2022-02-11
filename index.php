@@ -10,7 +10,7 @@ $user = new User;
 //Get paginator(page) From URL
 $page = (isset($_GET['page'])) ? (int) $_GET['page'] : (int) 1;
 
-if ($page == 1 || $page < 0) {
+if ($page == 1 || $page < 1) {
     $topics_per_page = 4;
     $page_offset_topics = 0;
     $page = 1;
