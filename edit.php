@@ -27,7 +27,7 @@ if(isset($_POST['do_edit'])){
 	$validate = new Validator;
 
     // Sanitize POST data
-    $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+    // $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
     //Create Data Array
 	$data = array();
@@ -43,7 +43,7 @@ if(isset($_POST['do_edit'])){
 	if($validate->isRequired($field_array)){
 		//Register User
 		if($topic->update($data)){
-			redirectWithMessage('index.php', 'Your topic has been updated', 'success');
+			redirectWithMessage("topic.php?id=$topic_id", 'Your topic has been updated', 'success');
 		} else {
 			// redirectWithMessage('topic.php?id='.$topic_id, 'Something went wrong with your post', 'error');
             flash('topic_message', 'Something went wrong with update post', 'alert alert-danger');

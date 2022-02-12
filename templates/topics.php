@@ -6,7 +6,7 @@
             <?php foreach($topics as $topic) : ?>
                 <li class="topic">
                     <div class="row">
-                        <div class="col-md-2">
+                        <div class="col-md-2" id="image-sec">
                             <img class="avatar img-fluid" width="80" src="images/avatars/<?php echo htmlspecialchars($topic->avatar); ?>" />
                         </div>
                         <div class="col-md-10">
@@ -22,7 +22,7 @@
                                         <?php echo htmlspecialchars($topic->username); ?>
                                     </a> >>
                                     <?php echo formatDate($topic->create_date); ?>
-                                    <span class="badge badge-pill badge-secondary float-right">
+                                    <span class="badge badge-pill badge-secondary float-right" id="reply-num">
                                         <?php echo replyCount($topic->id); ?> Replies 
                                     </span>
                                 </div>
@@ -149,12 +149,14 @@
         <?php endif; ?>
 
 
-    <h3>Forum Statistics</h3>
-    <ul>
-        <li>Total Number of Users: <strong><?php echo htmlspecialchars($totalUsers); ?></strong></li>
-        <li>Total Number of Topics: <strong><?php echo topicCount(); ?></strong></li>
-        <li>Total Number of Categories: <strong><?php echo htmlspecialchars($totalCategories); ?></strong></li>
-    </ul>
+    <div class="mt-4">
+        <h3>Forum Statistics</h3>
+        <ul>
+            <li>Total Number of Users: <strong><?php echo htmlspecialchars($totalUsers); ?></strong></li>
+            <li>Total Number of Topics: <strong><?php echo htmlspecialchars($totalTopics); ?></strong></li>
+            <li>Total Number of Categories: <strong><?php echo htmlspecialchars($totalCategories); ?></strong></li>
+        </ul>
+    </div>
 
 <?php include('includes/footer.php'); ?>
 

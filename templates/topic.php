@@ -19,9 +19,7 @@
                         <small>
                            Posted on  <?php echo htmlspecialchars($topic->last_activity); ?>
                         </small>
-                        <p>
-                            <?php echo htmlspecialchars($topic->body); ?>
-                        </p>
+                        <p><?php echo nl2br($topic->body); ?></p>
                         
                     </div>
                     
@@ -56,9 +54,7 @@
                             <small>
                                Replied on  <?php echo htmlspecialchars($reply->reply_date); ?>
                             </small>
-                            <p>
-                                <?php echo htmlspecialchars($reply->body); ?>
-                            </p>
+                            <div><?php echo nl2br(htmlspecialchars($reply->body) ); ?></div>
                             
                         </div>
                         

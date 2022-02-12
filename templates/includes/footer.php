@@ -18,7 +18,7 @@
                                     <label>Username</label>
                                     <input name="username" type="text" class="form-control" placeholder="Enter Username">
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group" id="password-sec">
                                     <label>Password</label>
                                     <input name="password" type="password" class="form-control" placeholder="Enter Password">
                                 </div>

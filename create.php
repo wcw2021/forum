@@ -25,7 +25,7 @@ if(isset($_POST['do_create'])){
 	$validate = new Validator;
 
     // Sanitize POST data
-    $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+    // $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
 	// Reset Init Data Array
 	$data['title'] = $_POST['title'];

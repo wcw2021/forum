@@ -92,7 +92,7 @@
             <div class="col-md-8">
                 <div class="main-col">
 					<div class="card card-body border-0 mb-4">
-                        <div class="d-flex justify-content-between align-items-baseline">
+                        <div class="d-flex justify-content-between align-items-baseline" id="title-sec">
                             <h1 class="h3 mb-0"><?php echo htmlspecialchars($title); ?></h1>
                             <h6 class="text-muted mb-0"><?php echo $subtitle; ?></h6>
                         </div>
