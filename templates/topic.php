@@ -9,7 +9,7 @@
     <ul id="topics" class="mb-3">
         <li id="main-topic" class="topic">
             <div class="row">
-                <div class="col-md-2">
+                <div class="col-lg-2">
                     <div class="user-info">
                         <img class="avatar img-fluid mb-2" width="80" src="images/avatars/<?php echo htmlspecialchars($topic->avatar); ?>" />
                         <ul>
@@ -19,7 +19,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-md-10">
+                <div class="col-lg-10">
                     <div class="topic-content">
                         <small>
                            Posted on  <?php echo htmlspecialchars($topic->last_activity); ?>
@@ -45,7 +45,7 @@
         <?php foreach($replies as $reply) : ?>
             <li class="topic">
                 <div class="row">
-                    <div class="col-md-2">
+                    <div class="col-lg-2">
                         <div class="user-info">
                             <img class="avatar img-fluid mb-2" width="80"  src="images/avatars/<?php echo htmlspecialchars($reply->avatar); ?>" />
                             <ul>
@@ -55,7 +55,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-md-10">
+                    <div class="col-lg-10">
                         <div class="reply-content">
                             <small>
                                Replied on  <?php echo htmlspecialchars($reply->reply_date); ?>
