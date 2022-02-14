@@ -21,6 +21,12 @@ $data =[
 
 
 if(isset($_POST['do_create'])){
+
+    if( !isset($_POST['create_topic_token']) || $_POST['create_topic_token'] !== $_SESSION['create_topic_token']){
+        // var_dump($_POST, $_SESSION); exit;
+        redirectWithMessage('index.php','Please re-submit the form','error');
+    }
+    
 	// Create Validator Object
 	$validate = new Validator;
 

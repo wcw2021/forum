@@ -23,6 +23,12 @@ $template = new Template('templates/edit.php');
 
 
 if(isset($_POST['do_edit'])){
+
+    if( !isset($_POST['edit_topic_token']) || $_POST['edit_topic_token'] !== $_SESSION['edit_topic_token']){
+        // var_dump($_POST, $_SESSION); exit;
+        redirectWithMessage('index.php','Please re-submit the form','error');
+    }
+    
 	// Create Validator Object
 	$validate = new Validator;
 

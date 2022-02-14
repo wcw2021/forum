@@ -1,4 +1,9 @@
-                    
+<?php
+    // form token for csrf protection
+    $_SESSION['login_token']  = bin2hex(random_bytes(32));  
+    $_SESSION['logout_token']  = bin2hex(random_bytes(32));  
+?>
+
                     </div> <!-- end of card -->
                 </div> <!-- end of main col -->                
             </div> <!-- end of col-md-8 -->
@@ -9,6 +14,7 @@
                         <?php if(isLoggedIn()) : ?>
                             <h3>Welcome! <?php echo (!empty(getUserInfo()['username'] )) ? getUserInfo()['username'] : ''; ?></h3>
                             <form class="mt-2" method="post" action="logout.php">
+                                <input name="logout_token" type="hidden" value="<?php echo $_SESSION['logout_token']; ?>">
                                 <input name="do_logout" type="submit" class="btn btn-info" value="Logout" />
                             </form>
                         <?php else : ?>
@@ -22,6 +28,7 @@
                                     <label>Password</label>
                                     <input name="password" type="password" class="form-control" placeholder="Enter Password">
                                 </div>
+                                <input name="login_token" type="hidden" value="<?php echo $_SESSION['login_token']; ?>">
                                 <button name="do_login" type="submit" class="btn btn-info" value="Login">Login</button>
                                 <a class="btn btn-secondary" id="register" href="register.php"> Create Account</a>
                             </form>

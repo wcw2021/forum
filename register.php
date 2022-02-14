@@ -25,6 +25,11 @@ $data =[
 
 if(isset($_POST['register'])){
 
+    if( !isset($_POST['register_token']) || $_POST['register_token'] !== $_SESSION['register_token']){
+        // var_dump($_POST, $_SESSION); exit;
+        redirectWithMessage('index.php','Please re-submit the form','error');
+    }
+
     // Invalie file upload
     if (empty($_FILES)) {    
         redirectWithMessage('register.php', 'Invalid File upload!', 'error');

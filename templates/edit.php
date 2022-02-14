@@ -1,3 +1,7 @@
+<?php
+    // form token for csrf protection
+    $_SESSION['edit_topic_token']  = bin2hex(random_bytes(32));  
+?>
 
 <?php include('includes/header.php'); ?>
 <?php if($topic) : ?>	
@@ -28,6 +32,7 @@
             <textarea id="body" rows="10" cols="80" class="form-control" name="body"><?php echo htmlspecialchars($topic->body); ?></textarea>
             <!-- <script>CKEDITOR.replace('body');</script> -->
         </div>
+        <input name="edit_topic_token" type="hidden" value="<?php echo $_SESSION['edit_topic_token']; ?>">
         <button name="do_edit" type="submit" class="btn btn-secondary" value="Edit">Submit</button>
     </form>
 <?php else : ?>

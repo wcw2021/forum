@@ -3,6 +3,11 @@
 <?php
 	if(isset($_POST['do_login'])){
 
+        if( !isset($_POST['login_token']) || $_POST['login_token'] !== $_SESSION['login_token']){
+            // var_dump($_POST, $_SESSION); exit;
+            redirectWithMessage('index.php','Please re-submit the form','error');
+        }
+
         // Sanitize POST data
         $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 

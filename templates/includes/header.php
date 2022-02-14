@@ -9,6 +9,9 @@
     }
 
     $activepage = basename($_SERVER['PHP_SELF'], ".php");
+
+    // form token for csrf protection
+    $_SESSION['nav_logout_token'] = bin2hex(random_bytes(32));
 ?>
 
 <!doctype html>
@@ -70,7 +73,8 @@
                                 <a class="dropdown-item" href="profile.php">Profile</a>
                                 <div class="dropdown-divider"></div>
                                 
-                                <form class="dropdown-item" method="post" action="logout.php">
+                                <form class="dropdown-item" method="post" action="nav_logout.php">
+                                    <input name="nav_logout_token" type="hidden" value="<?php echo $_SESSION['nav_logout_token']; ?>">
                                     <input name="do_logout" type="submit" class="btn p-0" value="Logout" />
                                 </form>
                             </div>

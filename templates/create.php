@@ -1,3 +1,7 @@
+<?php
+    // form token for csrf protection
+    $_SESSION['create_topic_token']  = bin2hex(random_bytes(32));  
+?>
 
 <?php include('includes/header.php'); ?>	
     <form method="post" action="create.php">
@@ -27,6 +31,7 @@
             <textarea id="body" rows="10" cols="80" class="form-control" name="body"><?php echo htmlspecialchars($data['body']); ?></textarea>
             <!-- <script>CKEDITOR.replace('body');</script> -->
         </div>
+        <input name="create_topic_token" type="hidden" value="<?php echo $_SESSION['create_topic_token']; ?>">
         <button name="do_create" type="submit" class="btn btn-secondary" value="Create">Submit</button>
     </form>
                             

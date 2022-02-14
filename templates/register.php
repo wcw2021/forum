@@ -1,3 +1,8 @@
+<?php
+    // form token for csrf protection
+    $_SESSION['register_token']  = bin2hex(random_bytes(32));  
+?>
+
 <?php include('includes/header.php'); ?>
 
 
@@ -33,6 +38,7 @@
             <label>About Me <small>(Optional)</small></label>
             <textarea id="about" rows="6" cols="80" class="form-control" name="about" placeholder="Tell us about yourself"><?php echo $data['about']; ?></textarea>
         </div>
+        <input name="register_token" type="hidden" value="<?php echo $_SESSION['register_token']; ?>">
         <input name="register" type="submit" class="btn btn-secondary" value="Register" />
     </form>
 

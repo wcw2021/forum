@@ -10,8 +10,13 @@ $topic_id = (isset($_GET['id'])) ? (int) $_GET['id'] : null;
 //Process Reply
 if(isset($_POST['do_reply'])){
 
+    if( !isset($_POST['reply_topic_token']) || $_POST['reply_topic_token'] !== $_SESSION['reply_topic_token']){
+        // var_dump($_POST, $_SESSION); exit;
+        redirectWithMessage('topic.php','Please re-submit the form','error');
+    }
+
     // Sanitize POST data
-    $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+    // $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
 	//Create Data Array
 	$data = array();
@@ -39,6 +44,12 @@ if(isset($_POST['do_reply'])){
 }
 
 if(isset($_POST['del_id'])){
+
+    if( !isset($_POST['delete_topic_token']) || $_POST['delete_topic_token'] !== $_SESSION['delete_topic_token']){
+        // var_dump($_POST, $_SESSION); exit;
+        redirectWithMessage('topic.php','Please re-submit the form','error');
+    }
+
 	$del_id = $_POST['del_id'];
 	if($topic->delete($del_id)){
 		redirectWithMessage('index.php', 'Topic Deleted', 'success');

@@ -3,7 +3,7 @@
 <?php
 if(isset($_POST['do_logout'])){
 
-    if( !isset($_POST['logout_token']) || $_POST['logout_token'] !== $_SESSION['logout_token'] ){
+    if( !isset($_POST['nav_logout_token']) || $_POST['nav_logout_token'] !== $_SESSION['nav_logout_token'] ){
         // var_dump($_POST, $_SESSION); exit;
         redirectWithMessage('index.php','Please re-submit the form','error');
     }
