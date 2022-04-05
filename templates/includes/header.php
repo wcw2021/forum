@@ -31,6 +31,8 @@
     <link rel="stylesheet" href="templates/css/style.css">
     <link rel="stylesheet" href="templates/css/advertise.css">
 
+    <meta name="robots" content="noindex, nofollow">
+
     <title>Forum</title>
 </head>
 
