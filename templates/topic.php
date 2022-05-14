@@ -11,7 +11,7 @@
             <div class="row">
                 <div class="col-lg-2">
                     <div class="user-info">
-                        <img class="avatar img-fluid mb-2" width="80" src="images/avatars/<?php echo htmlspecialchars($topic->avatar); ?>" />
+                        <img class="avatar img-fluid mb-lg-2" width="80" src="images/avatars/<?php echo htmlspecialchars($topic->avatar); ?>" />
                         <ul>
                             <li><strong><?php echo htmlspecialchars($topic->username); ?></strong></li>
                             <li><?php echo userTopicCount($topic->user_id); ?> Topics</li>
@@ -47,7 +47,7 @@
                 <div class="row">
                     <div class="col-lg-2">
                         <div class="user-info">
-                            <img class="avatar img-fluid mb-2" width="80"  src="images/avatars/<?php echo htmlspecialchars($reply->avatar); ?>" />
+                            <img class="avatar img-fluid mb-lg-2" width="80"  src="images/avatars/<?php echo htmlspecialchars($reply->avatar); ?>" />
                             <ul>
                                 <li><strong><?php echo htmlspecialchars($reply->username); ?></strong></li>
                                 <li><?php echo userTopicCount($reply->user_id); ?> Topics</li>
